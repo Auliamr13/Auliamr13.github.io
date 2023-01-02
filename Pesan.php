@@ -5,30 +5,26 @@ if(isset($_POST['submit'])){
      "
       INSERT INTO customer
       (
-       nama,
-       gender,
-       email,
-       ttl,
-       alamat,
-       agama,
-       hobi,
-       no_hp
+        tanggal_kegiatan,
+        nama_kegiatan,
+        nama_instansi,
+        asal_kota,
+        jml_peserta,
+        pkt_kegiatan
       )
       VALUES
-      (?,?,?,?,?,?,?,?)
+      (?,?,?,?,?,?)
      "
     );
     
-    $nama   = $_POST['nama'];
-    $gender  = $_POST['gender'];
-    $email  = $_POST['email'];
-    $ttl   = $_POST['ttl'];
-    $alamat  = $_POST['alamat'];
-    $agama   = $_POST['agama'];
-    $hobi   = $_POST['hobi'];
-    $hp    = $_POST['hp_1'] . $_POST['hp_2'];
+    $tanggal_kegiatan   = $_POST['tanggal_kegiatan'];
+    $nama_instansi  = $_POST['nama_instansi'];
+    $nama_kegiatan = $_POST['nama_kegiatan'];
+    $asal_kota   = $_POST['asal_kota'];
+    $jml_peserta  = $_POST['jml_peserta'];
+    $pkt_kegiatan   = $_POST['pkt_kegiatan'];
     
-    $sql->bind_param("ssssssss", $nama, $gender, $email, $ttl, $alamat,$agama,$hobi,$hp);
+    $sql->bind_param("ssssss", $tanggal_kegiatan, $nama_instansi, $nama_kegiatan, $asal_kota, $jml_peserta, $pkt_kegiatan);
     
     if($sql->execute()){
      Header('Location: index.php');
@@ -109,83 +105,54 @@ if(isset($_POST['submit'])){
   </section>
   
   <!-- akhirmaps -->
-
-
-  <form method="POST" action="">
+<form method="POST" action="">
  <table>
   <tr>
    <td>
-    Nama :
+    Tanggal Kegiatan :
    </td>
    <td>
-    <input type="text" placeholder="Nama" name="nama">
-   </td>
-  </tr>
-  <tr>
-   <td>
-    Gender :
-   </td>
-   <td>
-    <input type="radio" name="gender" value="Male">Male
-    <input type="radio" name="gender" value="Female">Female
+    <input type="text" placeholder=" Tanggal Kegiatan" name="tanggal_kegiatan">
    </td>
   </tr>
   <tr>
    <td>
-    Email :
+    Nama Instansi :
    </td>
    <td>
-    <input type="text" placeholder="Email" name="email">
-   </td>
-  </tr>
-  <tr>
-   <td>
-    TTL :
-   </td>
-   <td>
-    <input type="text" placeholder="TTL" name="ttl">
+    <input type="text" placeholder="Nama Instansi" name="nama_instansi">
    </td>
   </tr>
   <tr>
    <td>
-    Alamat :
+    Nama Kegiatan :
    </td>
    <td>
-    <input type="mail" placeholder="Alamat" name="alamat">
-   </td>
-  </tr>
-  <tr>
-   <td>
-    Agama :
-   </td>
-   <td>
-    <select name="agama">
-     <option>Islam</option>
-     <option>Kristen</option>
-     <option>Protestan</option>
-     <option>Hindu</option>
-     <option>Budha</option>
-    </select>
-   </td>
-  </tr>
-  
-  <tr>
-   <td>
-    Hobi :
-   </td>
-   <td>
-    <input type="text" placeholder="Hobi" name="hobi">
+    <input type="text" placeholder="Nama Kegiatan" name="nama_kegiatan">
    </td>
   </tr>
   <tr>
    <td>
-    No HP :
+    Asal Kota :
    </td>
    <td>
-    <select name="hp_1">
-     <option>+62</option>
-     <input type="phone" placeholder="" name="hp_2">
-    </select>
+    <input type="mail" placeholder="Asal Kota" name="asal_kota">
+   </td>
+  </tr>
+  <tr>
+   <td>
+    Jumlah peserta :
+   </td>
+   <td>
+    <input type="text" placeholder="Jumlah peserta" name="jml_peserta">
+   </td>
+  </tr>
+   <tr>
+   <td>
+    Paket Kegiatan  :
+   </td>
+   <td>
+    <input type="text" placeholder="Paket Kegiatan" name="pkt_kegiatan ">
    </td>
   </tr>
   <tr>
@@ -197,71 +164,7 @@ if(isset($_POST['submit'])){
 </form>
 <br/>
 
-<table border="1">
- <tr>
-  <th>Nama</th>
-  <th>Gender</th>
-  <th>Email</th>
-  <th>TTL</th>
-  <th>Alamat</th>
-  <th>Agama</th>
-  <th>Hobi</th>
-  <th>No.HP</th>
- </tr>
- <?php
-  $sql = "SELECT * FROM mahasiswa";
-  $result = $conn->query($sql);
 
-  if ($result->num_rows > 0) :
-      while($row = $result->fetch_assoc()) :
- ?>
- <tr>
-  <td>
-   <?php
-    echo $row['nama']
-   ?>
-  </td>
-  <td>
-   <?php
-    echo $row['gender']
-   ?>
-  </td>
-  <td>
-   <?php
-    echo $row['email']
-   ?>
-  </td>
-  <td>
-   <?php
-    echo $row['ttl']
-   ?>
-  </td>
-  <td>
-   <?php
-    echo $row['alamat']
-   ?>
-  </td>
-  <td>
-   <?php
-    echo $row['agama']
-   ?>
-  </td>
-  <td>
-   <?php
-    echo $row['hobi']
-   ?>
-  </td>
-  <td>
-   <?php
-    echo $row['no_hp']
-   ?>
-  </td>
- </tr>
- <?php
-   endwhile;
-  endif;
- ?>
-</table>
 
 <p></p>
 <p></p>
