@@ -1,34 +1,30 @@
 <?php
- $conn = new mysqli('localhost','root','','tutorial_php'); 
- if(isset($_POST['submit'])){
+  $conn = mysqli_connect('localhost', 'pemw7441_montana', 'montana1234', 'pemw7441_montana');
+  if(isset($_POST['submit'])){
     $sql = $conn->prepare(
      "
       INSERT INTO customer
       (
-       nama,
-       gender,
-       email,
-       ttl,
-       alamat,
-       agama,
-       hobi,
-       no_hp
+        tanggal_kegiatan,
+        nama_kegiatan,
+        nama_instansi,
+        asal_kota,
+        jml_peserta,
+        pkt_kegiatan
       )
       VALUES
-      (?,?,?,?,?,?,?,?)
+      (?,?,?,?,?,?)
      "
     );
     
-    $nama   = $_POST['nama'];
-    $gender  = $_POST['gender'];
-    $email  = $_POST['email'];
-    $ttl   = $_POST['ttl'];
-    $alamat  = $_POST['alamat'];
-    $agama   = $_POST['agama'];
-    $hobi   = $_POST['hobi'];
-    $hp    = $_POST['hp_1'] . $_POST['hp_2'];
+    $tanggal_kegiatan   = $_POST['tanggal_kegiatan'];
+    $nama_instansi  = $_POST['nama_instansi'];
+    $nama_kegiatan = $_POST['nama_kegiatan'];
+    $asal_kota   = $_POST['asal_kota'];
+    $jml_peserta  = $_POST['jml_peserta'];
+    $pkt_kegiatan   = $_POST['pkt_kegiatan'];
     
-    $sql->bind_param("ssssssss", $nama, $gender, $email, $ttl, $alamat,$agama,$hobi,$hp);
+    $sql->bind_param("ssssss", $tanggal_kegiatan, $nama_instansi, $nama_kegiatan, $asal_kota, $jml_peserta, $pkt_kegiatan);
     
     if($sql->execute()){
      Header('Location: index.php');
