@@ -1,5 +1,5 @@
 <?php
-  $conn = mysqli_connect('localhost', 'pemw7441_montana', 'montana1234', 'pemw7441_montana');
+   $conn = new mysqli('localhost','root','','tutorial_php');
   if(isset($_POST['submit'])){
     $sql = $conn->prepare(
      "
